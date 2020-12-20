@@ -5,7 +5,7 @@
 <img src="screenshots/detail.png" width="30%"/>
 </p>
 
-A simple app that keeps a list of movies that the user wants to watch in the future. The app searches the movies using itunes api.
+A simple app that keeps a list of movies that the user wants to watch in the future. The app searches the movies using itunes api and shows preview videos.
 
 ### Features
 * The app is developed based on the MVVM Architecture pattern recommended by Google

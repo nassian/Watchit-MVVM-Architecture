@@ -1,6 +1,9 @@
 package com.nassiansoft.watchit.ui.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.google.android.exoplayer2.ui.PlayerView
+import com.nassiansoft.watchit.IPlayerHelper
+import com.nassiansoft.watchit.PlayerHelper
 import com.nassiansoft.watchit.data.MovieRepositoryInterface
 import com.nassiansoft.watchit.data.model.Movie
 import io.reactivex.Completable
@@ -9,6 +12,7 @@ import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 class DetailViewModelTest{
@@ -22,7 +26,7 @@ class DetailViewModelTest{
     @Before
     fun init(){
         repository=mock(MovieRepositoryInterface::class.java)
-        viewModel=DetailViewModel(repository)
+        viewModel=DetailViewModel(repository,PlayerHelper)
     }
 
     @Test
@@ -42,6 +46,16 @@ class DetailViewModelTest{
         val result=viewModel.getMovieDeleted()
         result.observeForever {  }
         assertThat(result.value,`is`(true))
+
+    }
+
+
+    object PlayerHelper:IPlayerHelper{
+        override fun preparePlayer(url: String?, playerView: PlayerView) {
+        }
+
+        override fun releasePlayer() {
+        }
 
     }
 

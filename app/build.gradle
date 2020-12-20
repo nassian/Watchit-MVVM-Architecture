@@ -114,6 +114,10 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
+    def exoplayer_version="2.12.2"
+    implementation "com.google.android.exoplayer:exoplayer:$exoplayer_version"
+
+
 
 
 }

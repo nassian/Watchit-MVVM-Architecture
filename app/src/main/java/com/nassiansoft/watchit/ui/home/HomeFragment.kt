@@ -60,7 +60,7 @@ class HomeFragment : DaggerFragment() {
 
         setupRecyclerView()
         observeMovieList()
-
+        if (savedInstanceState!=null) animationShowed=true
 
        return binding.root
     }
@@ -76,6 +76,8 @@ class HomeFragment : DaggerFragment() {
         super.onStart()
         binding.splashLayout.show(!animationShowed)
     }
+
+
 
 
 

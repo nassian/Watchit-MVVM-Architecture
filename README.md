@@ -18,4 +18,5 @@ A simple app that keeps a list of movies that the user wants to watch in the fut
 * There is one integration test which tests the data layer.
 * Each viewModel has its own unit test
 * A fake remote data source and an in-memory database are used to create a fake repository that is injected for the end-to-end espresso test
-* The splash screen is animated by ObjecAnimator. It is worth mentioning that unlike many projects a designated fragment or activity is not created for the splash screen. Therefore the animation is triggered by a reactive stream that loads data.
+* The splash screen is animated by ObjectAnimator. It is worth mentioning that unlike many projects a designated fragment or activity is not created for the splash screen. Therefore the animation is triggered by a reactive stream that loads data.
+* The search layout on top of the search fragment hides on scroll with animation. The animation effect is implemented in a motion layout

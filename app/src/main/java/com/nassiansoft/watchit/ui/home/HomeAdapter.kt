@@ -14,7 +14,7 @@ import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 
-class HomeAdapter @Inject constructor():ListAdapter<Movie,HomeAdapter.HomeVh> (MovieDiffUtilCallback()) {
+class HomeAdapter @Inject constructor():ListAdapter<Movie,HomeAdapter.HomeVh> (MovieDiffUtilCallback) {
 
 
 
@@ -22,7 +22,7 @@ class HomeAdapter @Inject constructor():ListAdapter<Movie,HomeAdapter.HomeVh> (M
     fun getWatchListener(): Observable<Movie> =_watchClickListener.hide()
 
     private val _detailClickListener=PublishSubject.create<Movie>()
-    fun getDetailListener(): Observable<Movie> = _detailClickListener
+    fun getDetailListener(): Observable<Movie> = _detailClickListener.hide()
 
     inner class HomeVh(val binding:HomeViewHolderBinding):RecyclerView.ViewHolder(binding.root) {
         init {
@@ -55,20 +55,24 @@ class HomeAdapter @Inject constructor():ListAdapter<Movie,HomeAdapter.HomeVh> (M
         holder.binding.movie=item
     }
 
+    companion object{
+       private val MovieDiffUtilCallback= object :DiffUtil.ItemCallback<Movie> (){
+
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem.trackId==newItem.trackId
+            }
+
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return  oldItem==newItem
+            }
+
+        }
+    }
+
 
 }
 
 
-class MovieDiffUtilCallback:DiffUtil.ItemCallback<Movie> (){
 
-    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-       return oldItem.trackId==newItem.trackId
-    }
-
-    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-      return  oldItem==newItem
-    }
-
-}
 
 
